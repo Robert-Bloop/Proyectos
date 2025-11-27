@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamburguesas Kalamazoo - Las mejores hamburguesas de la ciudad</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ff6b35;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1600') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            animation: fadeInDown 1s;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            animation: fadeInUp 1s;
+        }
+
+        .btn-whatsapp {
+            display: inline-block;
+            background: #25d366;
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            animation: fadeInUp 1.2s;
+        }
+
+        .btn-whatsapp:hover {
+            background: #20bd5a;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        /* Secciones */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ff6b35;
+        }
+
+        /* Sobre Nosotros */
+        #sobre-nosotros {
+            background: #f9f9f9;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .about-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .about-info h4 {
+            color: #ff6b35;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .about-info p {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        /* Menú */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .menu-item-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-item-content {
+            padding: 1.5rem;
+        }
+
+        .menu-item h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .menu-item-price {
+            color: #ff6b35;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
+            text-decoration: none;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.7);
+        }
+
+        /* Animaciones */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">🍔 Kalamazoo</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre-nosotros">Nosotros</a></li>
+                <li><a href="#menu">Menú</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Hamburguesas Kalamazoo</h1>
+            <p>Las mejores hamburguesas artesanales de la ciudad</p>
+            <a href="https://wa.me/+543885066167" class="btn-whatsapp">🍔 Pedir por WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros -->
+    <section id="sobre-nosotros">
+        <h2 class="section-title">Nuestra Historia</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Pasión por las hamburguesas desde 2015</h3>
+                <p>En Hamburguesas Kalamazoo, creemos que una buena hamburguesa es más que solo comida, es una experiencia. Desde nuestros humildes comienzos en un pequeño local, hemos crecido gracias a la pasión por ingredientes de calidad y recetas únicas.</p>
+                <p>Cada hamburguesa es preparada al momento con carne 100% premium, pan artesanal horneado diariamente y vegetales frescos de productores locales. Nuestro compromiso es simple: crear la mejor hamburguesa que hayas probado.</p>
+            </div>
+            <div class="about-info">
+                <h4>📍 Ubicación & Horarios</h4>
+                <p><strong>Dirección:</strong> Av. Principal 1234, Centro</p>
+                <p><strong>Teléfono:</strong> +54 388 506 6167</p>
+                <br>
+                <p><strong>🕐 Horarios de atención:</strong></p>
+                <p>Lunes a Jueves: 12:00 - 23:00</p>
+                <p>Viernes y Sábado: 12:00 - 01:00</p>
+                <p>Domingo: 18:00 - 23:00</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menú -->
+    <section id="menu">
+        <h2 class="section-title">Nuestro Menú</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img src="https://drive.google.com/thumbnail?id=1Of0xHngZV0vLewGgsvvPvab_2T-v11ya&sz=w600" alt="Kalamazoo Clásica" class="menu-item-image">
+                <div class="menu-item-content">
+                    <h3>Kalamazoo Clásica</h3>
+                    <div class="menu-item-price">$3.500</div>
+                    <p>Nuestra hamburguesa insignia: 200g de carne premium, queso cheddar, lechuga, tomate, cebolla caramelizada y nuestra salsa secreta en pan brioche.</p>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://drive.google.com/thumbnail?id=1g_n_H2Zs5dq7VPksHYaeOdtG0KrmzY5_&sz=w600" alt="Bacon Bomb" class="menu-item-image">
+                <div class="menu-item-content">
+                    <h3>Bacon Bomb</h3>
+                    <div class="menu-item-price">$4.200</div>
+                    <p>Para los amantes del bacon: doble carne, queso ahumado, bacon crocante, aros de cebolla fritos y salsa BBQ. Explosiva en sabor.</p>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://drive.google.com/thumbnail?id=1ucZ-iDSzBgTXNQaMqgttEq1w11crEFZp&sz=w600" alt="Veggie Delight" class="menu-item-image">
+                <div class="menu-item-content">
+                    <h3>Veggie Delight</h3>
+                    <div class="menu-item-price">$3.200</div>
+                    <p>Medallón de garbanzos y quinoa, queso, aguacate, rúcula, tomate y mayonesa de cilantro. ¡100% vegetariana y deliciosa!</p>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://drive.google.com/thumbnail?id=1TJvLs5GLcCKhckotssM2OluiahJVwp7a&sz=w600" alt="Spicy Jalapeño" class="menu-item-image">
+                <div class="menu-item-content">
+                    <h3>Spicy Jalapeño</h3>
+                    <div class="menu-item-price">$3.800</div>
+                    <p>Para los valientes: carne sazonada, queso pepper jack, jalapeños frescos, guacamole y salsa chipotle picante.</p>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://drive.google.com/thumbnail?id=1GwbTMYmVbZEjMkojXWClBbTAY7hcZODS&sz=w600" alt="Blue Cheese Luxury" class="menu-item-image">
+                <div class="menu-item-content">
+                    <h3>Blue Cheese Luxury</h3>
+                    <div class="menu-item-price">$4.500</div>
+                    <p>Experiencia gourmet: carne premium, queso azul, cebolla morada encurtida, arúgula y reducción de balsámico.</p>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://drive.google.com/thumbnail?id=1BPDFjjvrJo5Ej2UhxlGc6b08-yBqqd-2&sz=w600" alt="Kids Burger" class="menu-item-image">
+                <div class="menu-item-content">
+                    <h3>Kids Burger</h3>
+                    <div class="menu-item-price">$2.500</div>
+                    <p>Perfecta para los pequeños: mini hamburguesa con queso, incluye papas fritas y bebida. Simple y sabrosa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Hamburguesas Kalamazoo. Todos los derechos reservados.</p>
+        <p>Hecho con ❤️ y mucha carne</p>
+    </footer>
+
+    <!-- WhatsApp Flotante -->
+    <a href="https://wa.me/+543885066167" class="whatsapp-float" target="_blank">
+        💬
+    </a>
+
+    <script>
+        // Smooth scroll para los enlaces de navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animación al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = 'all 0.6s ease-out';
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>

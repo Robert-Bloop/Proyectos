@@ -1,0 +1,475 @@
+/* ========================================================================= */
+/* === TECHHUB GLOBAL STYLES - ESTÉTICA FUTURISTA OSCURA === */
+/* ========================================================================= */
+
+/* --- 1. Variables Globales (Diseño de Interfaz Fluida) --- */
+:root {
+    /* Colores */
+    --color-bg-dark: #070D18; /* Fondo principal muy oscuro */
+    --color-primary: #5252FF; /* Azul Eléctrico (Principal) */
+    --color-secondary: #7F00FF; /* Violeta/Púrpura (Acento) */
+    --color-accent-grad: linear-gradient(90deg, #5252FF 0%, #7F00FF 100%); /* Degradado principal */
+    --color-text-light: #ffffff; /* Texto principal claro */
+    --color-text-secondary: #c9d1d9; /* Gris claro para párrafos */
+    --color-card-bg: rgba(18, 25, 38, 0.7); /* Fondo de tarjeta semitransparente (Glassmorphism oscuro) */
+    --color-border: rgba(82, 82, 255, 0.3); /* Borde sutil */
+    
+    /* Tipografía y Espaciado */
+    --font-family: 'Poppins', 'Inter', sans-serif;
+    --base-font-size: 17px;
+    --heading-font-weight: 700;
+
+    /* Geometría y Sombras */
+    --border-radius-lg: 12px;
+    --border-radius-full: 9999px;
+    --shadow-card: 0 4px 25px rgba(0, 0, 0, 0.4), 0 0 20px rgba(82, 82, 255, 0.15); /* Sombra con neón sutil */
+    --shadow-neón: 0 0 15px var(--color-primary);
+}
+
+/* --- Animación de Fondo Sutil (Ondas Digitales) --- */
+@keyframes background-pan {
+    from { background-position: 0% 0%; }
+    to { background-position: -200vw -200vh; }
+}
+
+/* --- 2. Estilo Global y Tipografía --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Suavizado de fuente para apariencia premium */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    font-size: var(--base-font-size);
+    color: var(--color-text-secondary);
+    background-color: var(--color-bg-dark);
+    min-height: 100vh;
+    overflow-x: hidden; /* Evita el scroll horizontal */
+    position: relative;
+    
+    /* Aplicación del Fondo Futurista (Degradado + Patrón/Textura) */
+    background: var(--color-bg-dark);
+    background-image: 
+        /* Patrón geométrico de circuito/ondas (simulado) */
+        radial-gradient(circle at 10% 10%, rgba(82, 82, 255, 0.1) 1px, transparent 0),
+        radial-gradient(circle at 90% 90%, rgba(127, 0, 255, 0.1) 1px, transparent 0),
+        repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255, 255, 255, 0.03) 41px, transparent 42px),
+        repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255, 255, 255, 0.03) 41px, transparent 42px),
+        /* Degradado de fondo sutil (Índigo/Violeta) */
+        linear-gradient(135deg, rgba(82, 82, 255, 0.1) 0%, rgba(127, 0, 255, 0.1) 100%);
+    
+    background-size: 50vw 50vh, 50vw 50vh, 100% 100%;
+    
+    /* Animación de fondo sutil */
+    animation: background-pan 120s linear infinite; 
+}
+
+/* Contenedor principal para centrar el contenido */
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Títulos y Enlaces */
+h1, h2, h3, h4 {
+    color: var(--color-text-light);
+    font-weight: var(--heading-font-weight);
+    line-height: 1.2;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-secondary);
+}
+
+/* ========================================================================= */
+/* === 3. HEADER Y NAVEGACIÓN (Sticky y Blur) === */
+/* ========================================================================= */
+
+.site-header {
+    background-color: rgba(7, 13, 24, 0.85); /* Fondo muy oscuro semitransparente */
+    backdrop-filter: blur(8px); /* Efecto blur para interfaz fluida */
+    padding: 18px 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    background-image: var(--color-accent-grad);
+    
+    /* ESTA ES LA CORRECCIÓN: */
+    -webkit-background-clip: text; /* Para compatibilidad (Chrome, Safari) */
+    background-clip: text;         /* <--- AGREGA ESTA LÍNEA (Estándar) */
+    
+    -webkit-text-fill-color: transparent;
+    color: transparent; /* Opcional: Buena práctica como respaldo */
+}
+
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--color-primary);
+}
+
+/* Línea de acento animada al pasar el ratón */
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: var(--color-accent-grad);
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* ========================================================================= */
+/* === 4. CLASES REUTILIZABLES DE CONTENIDO === */
+/* ========================================================================= */
+
+/* --- Títulos de Sección --- */
+.section {
+    padding: 6rem 0; /* Espaciado uniforme */
+}
+
+.section-title {
+    text-align: center;
+    font-size: 3.5rem;
+    margin-bottom: 3rem;
+    color: var(--color-text-light);
+    text-shadow: 0 0 10px rgba(82, 82, 255, 0.3); /* Pequeño resplandor */
+}
+
+/* --- Hero Section (Específico para la página principal/index) --- */
+.hero {
+    padding: 8rem 0;
+    text-align: center;
+    margin: 30px 0;
+    background: rgba(0, 0, 0, 0.5); /* Overlay semitransparente */
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-card);
+}
+
+.hero h2 {
+    font-size: 4.5rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.hero-subtitle {
+    font-size: 1.4rem;
+    color: #9ca3af;
+    max-width: 800px;
+    margin: 0 auto 35px;
+}
+
+/* --- Botones Futuristas --- */
+.btn-primary {
+    display: inline-block;
+    background: var(--color-accent-grad);
+    color: var(--color-text-light);
+    padding: 16px 40px;
+    border-radius: var(--border-radius-full);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(82, 82, 255, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(127, 0, 255, 0.6);
+}
+
+/* Efecto de luz al pasar el ratón */
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    transform: skewX(-20deg);
+    transition: all 0.5s ease;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+/* --- Tarjetas (Glassmorphism Oscuro) --- */
+.card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    padding: 30px;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(5px); /* Efecto Glassmorphism */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.6), 0 0 30px var(--color-primary); /* Resplandor más fuerte */
+}
+
+/* --- Grid de Contenido --- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* ========================================================================= */
+/* === 5. ESTILO DE FORMULARIO (Inscripción) === */
+/* ========================================================================= */
+
+.form-container {
+    max-width: 700px;
+    margin: 40px auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+}
+
+.form-group input:not([type="radio"]):not([type="checkbox"]),
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05); /* Fondo casi transparente */
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    color: var(--color-text-light);
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 10px rgba(82, 82, 255, 0.6);
+}
+
+/* Estilo para placeholder (para coherencia) */
+::placeholder {
+    color: #4a5568;
+}
+
+/* Grupos de radio y checkbox */
+.radio-group label, .checkbox-group label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    margin-right: 20px;
+    color: var(--color-text-secondary);
+}
+
+/* Estilo para el botón de formulario (usa .btn-primary) */
+#inscripcionForm .btn-primary {
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* ========================================================================= */
+/* === 6. FOOTER PREMIUM === */
+/* ========================================================================= */
+
+footer {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 50px 0 20px;
+    border-top: 2px solid var(--color-border);
+    color: #9ca3af;
+    font-size: 0.95rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-section h3 {
+    color: var(--color-primary);
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section a {
+    color: #9ca3af;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: var(--color-primary);
+}
+
+footer p {
+    text-align: center;
+    border-top: 1px solid #374151;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+
+/* ========================================================================= */
+/* === 7. DISEÑO RESPONSIVO COMPLETO === */
+/* ========================================================================= */
+
+/* Tablet y Móvil Horizontal */
+@media (max-width: 1024px) {
+    .hero h2 {
+        font-size: 3.5rem;
+    }
+    .section-title {
+        font-size: 3rem;
+    }
+}
+
+/* Móvil */
+@media (max-width: 768px) {
+    .site-header {
+        padding: 10px 0;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .logo a {
+        font-size: 1.5rem;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .section {
+        padding: 4rem 0;
+    }
+    
+    .hero {
+        padding: 5rem 15px;
+    }
+
+    .hero h2 {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .btn-primary {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-section ul {
+        padding-top: 10px;
+    }
+}
+
+/* Móvil pequeño */
+@media (max-width: 480px) {
+    body {
+        font-size: 16px;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+}

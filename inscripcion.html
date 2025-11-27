@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscripción a Cursos - TechHub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ======================================= */
+        /* == DISEÑO MODERNO (STYLING GLOBAL) == */
+        /* ======================================= */
+        :root {
+            --color-primary: #5A67D8; /* Índigo */
+            --color-secondary: #4299E1; /* Azul de acento */
+            --color-text-dark: #1A202C;
+            --color-bg-light: #F8FAFC;
+            --color-white: #FFFFFF;
+            --border-radius-lg: 16px;
+            --border-radius-full: 9999px;
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #4A5568;
+            background-color: var(--color-bg-light); 
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* ======================================= */
+        /* == HEADER Y CONTADOR == */
+        /* ======================================= */
+
+        header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: var(--color-white);
+            padding: 3rem 0;
+            text-align: center;
+            border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--color-white);
+            margin-bottom: 5px;
+        }
+        
+        .counter-box {
+            background: var(--color-text-dark); 
+            color: var(--color-white);
+            padding: 15px;
+            border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .counter-number {
+            font-size: 3rem;
+            color: var(--color-secondary); 
+            display: block;
+            font-weight: 700;
+        }
+
+        /* ======================================= */
+        /* == FORMULARIO (CARD STYLE) == */
+        /* ======================================= */
+
+        .form-container {
+            background: var(--color-white);
+            padding: 40px;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+            margin-top: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+            color: var(--color-text-dark);
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px; /* Bordes redondeados sutiles */
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background-color: var(--color-bg-light);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--color-primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.2); /* Sombra de enfoque moderna */
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: var(--color-white);
+            padding: 16px;
+            border: none;
+            border-radius: var(--border-radius-full);
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(90, 103, 216, 0.3);
+        }
+
+        .btn-submit:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(66, 153, 225, 0.4);
+        }
+
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .back-home:hover {
+            color: var(--color-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Formulario de Inscripción</h1>
+            <p>Asegura tu cupo en los cursos de TechHub.</p>
+        </header>
+
+        <div class="counter-box">
+            Ya somos <span id="user-counter" class="counter-number">125</span> usuarios inscritos.
+        </div>
+
+        <div class="form-container">
+            <form id="inscripcionForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre y apellido">
+                </div>
+                
+                <div class="form-group">
+                    <label for="correo">Correo Electrónico</label>
+                    <input type="email" id="correo" name="correo" required placeholder="ejemplo@correo.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="telefono">Teléfono / WhatsApp</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="+54 9 XX XXXX XXXX">
+                </div>
+                
+                <div class="form-group">
+                    <label for="area">Área de Interés</label>
+                    <select id="area" name="area" required>
+                        <option value="">Seleccione un área de especialización</option>
+                        <option value="desarrollo_web">Desarrollo Web</option>
+                        <option value="ciberseguridad">Ciberseguridad</option>
+                        <option value="ia">Inteligencia Artificial</option>
+                        <option value="hardware">Hardware</option>
+                        <option value="tutoria_personalizada">Tutoría Personalizada</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="turno">Turno Horario Preferido</label>
+                    <select id="turno" name="turno" required>
+                        <option value="">Seleccione un turno</option>
+                        <option value="mañana">Mañana (8:00 - 12:00)</option>
+                        <option value="tarde">Tarde (14:00 - 18:00)</option>
+                        <option value="noche">Noche (19:00 - 23:00)</option>
+                        <option value="flexible">Flexible / Fin de Semana</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn-submit">Enviar Inscripción</button>
+            </form>
+            <a href="TechHub.html" class="back-home">← Volver a la página principal</a>
+        </div>
+    </div>
+
+    <script>
+        const counterElement = document.getElementById('user-counter');
+        const form = document.getElementById('inscripcionForm');
+        let count = 125; 
+
+        function animateCounter() {
+            let start = 0;
+            const duration = 2000; 
+            const startTimestamp = performance.now();
+
+            function step(timestamp) {
+                const elapsed = timestamp - startTimestamp;
+                const progress = Math.min(elapsed / duration, 1);
+                // Usamos Math.round para evitar decimales en el contador visual
+                const currentCount = Math.round(progress * count); 
+                counterElement.textContent = currentCount;
+
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    counterElement.textContent = count; 
+                }
+            }
+
+            window.requestAnimationFrame(step);
+        }
+
+        // LÓGICA DE ENVÍO Y REDIRECCIÓN
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); 
+
+            count += 1; 
+            counterElement.textContent = count;
+
+            alert(`¡Inscripción enviada con éxito! Ahora somos ${count} usuarios.\nSerás redirigido a la página principal.`);
+            
+            // Redirige al archivo principal (TechHub.html)
+            setTimeout(() => {
+                window.location.href = 'TechHub.html'; 
+            }, 2000); 
+        });
+
+        // Asegurarse de que el contador inicial se anime al cargar
+        animateCounter();
+    </script>
+</body>
+</html>

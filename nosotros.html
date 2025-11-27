@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros | TechHub - Nuestra Historia Detallada</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            /* 💡 CAMBIO: Aumentar interlineado para mejor lectura */
+            line-height: 1.7; 
+            color: #333;
+            background-color: #f4f4f9; 
+            padding-bottom: 50px; 
+            /* 💡 CAMBIO CLAVE: Aumentar el tamaño base de la fuente */
+            font-size: 17px; 
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header (Encabezado para la página interna) */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        header h1 {
+            /* 💡 CAMBIO: Encabezado más grande */
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+            border-bottom: 1px dashed #ccc;
+        }
+        
+        .intro h2 {
+             /* 💡 CAMBIO: Subtítulo más grande */
+            font-size: 2.2rem;
+            color: #764ba2;
+            margin-bottom: 10px;
+        }
+
+        /* Sección de Hitos (Timeline) */
+        .timeline-section {
+            padding: 40px 0;
+        }
+
+        .timeline-section h2 {
+            /* 💡 CAMBIO: Título de sección más grande */
+            font-size: 2.8rem;
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .timeline-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        
+        .timeline-item {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s;
+        }
+        
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .timeline-item h3 {
+            /* 💡 CAMBIO CLAVE: Aumentar título del hito */
+            font-size: 1.7rem;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item p {
+            /* 💡 CAMBIO CLAVE: Aumentar texto de párrafo para mejor legibilidad */
+            font-size: 1.05rem; 
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .timeline-item strong {
+            color: #764ba2;
+        }
+        
+        .image-box {
+            margin-top: 15px;
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding-bottom: 10px; /* Espacio para la barra de desplazamiento */
+        }
+        
+        .image-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .mission-vision {
+            background-color: #e6e8fa;
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 40px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .mission-vision h3 {
+            /* 💡 CAMBIO CLAVE: Aumentar título de misión/visión */
+            font-size: 2.0rem;
+            color: #764ba2;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .mission-vision p {
+            /* 💡 CAMBIO CLAVE: Aumentar texto de misión/visión */
+            font-size: 1.2rem;
+            color: #333;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #667eea;
+            color: white !important;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #764ba2;
+        }
+        
+        /* Media Queries para responsividad */
+        @media (min-width: 768px) {
+            .timeline-container {
+                /* Esto crea la línea central visualmente */
+                border-left: 2px solid #ccc; 
+                position: relative;
+                padding-left: 20px;
+                display: block; /* Volver a block para el timeline vertical */
+            }
+
+            .timeline-item {
+                position: relative;
+                max-width: 100%;
+                margin-left: -5px; /* Compensa el borde izquierdo del timeline-container */
+                border-left: none; /* Quitamos el borde izquierdo de los items */
+            }
+
+            .timeline-item::before {
+                content: '';
+                position: absolute;
+                left: -33px; /* Alineado con la línea central */
+                top: 25px;
+                width: 15px;
+                height: 15px;
+                background-color: #667eea;
+                border: 3px solid white;
+                border-radius: 50%;
+                z-index: 1;
+                box-shadow: 0 0 0 2px #667eea;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>TechHub | Nuestra Historia</h1>
+            <p>Desde nuestra fundación hasta la visión del futuro.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="intro">
+            <h2>Comprometidos con el Liderazgo Tecnológico</h2>
+            <p>TechHub es una iniciativa educativa nacida de la pasión por la tecnología y la necesidad de profesionales cualificados en el sector. Nuestra historia es un camino de constante crecimiento, adaptación y compromiso con la excelencia en el aprendizaje.</p>
+        </section>
+
+        <section class="timeline-section">
+            <h2 class="section-title">Nuestros Hitos Clave</h2>
+            
+            <div class="timeline-container">
+                
+                <div class="timeline-item">
+                    <h3>2023: El Nacimiento</h3>
+                    <p>TechHub se funda como un proyecto enfocado inicialmente en **Desarrollo Web** y **Ciberseguridad**. Comenzamos con un equipo de tres tutores expertos y una plataforma sencilla, con el objetivo de ofrecer mentoría personalizada y práctica.</p>
+                    <p>La respuesta inicial de los estudiantes superó las expectativas, confirmando la alta demanda de un modelo de enseñanza más práctico y directo al grano, diferente a la educación tradicional.</p>
+                    <div class="image-box">
+                        <img src="oficina.jpg" alt="Foto de la primera oficina de TechHub" style="width: 250px;">
+                        <img src="estudiantes.jpg" alt="Foto de los primeros estudiantes en un aula" style="width: 250px;">
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>2024: Expansión y Reconocimiento</h3>
+                    <p>Tras el éxito inicial, ampliamos nuestro equipo de educadores y lanzamos nuestra primera serie de **bootcamps intensivos**. Esto nos permitió duplicar nuestra base de estudiantes y recibir nuestros primeros reconocimientos en foros de tecnología local.</p>
+                    <p>Implementamos nuestro sistema de **tutorías 1-a-1** como pilar de nuestro modelo, asegurando que cada estudiante reciba la atención necesaria para dominar los temas complejos de la ciberseguridad y el desarrollo full stack.</p>
+                    <p>Comenzamos a desarrollar contenido propio y más profundo, centrado en tecnologías de nicho como **Microservicios** y **DevOps**.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Hoy: Mirando hacia el Futuro</h3>
+                    <p>TechHub se expande formalmente a las áreas de **Inteligencia Artificial (IA)** y **Hardware**, abarcando así todo el espectro de la tecnología moderna. Invertimos en nuevos recursos y simuladores virtuales avanzados para ofrecer experiencia práctica sin necesidad de equipo físico costoso.</p>
+                    <p>Nuestra visión se amplía: no solo educar, sino también conectar a nuestros graduados con oportunidades laborales a través de alianzas estratégicas con empresas del sector. Continuamos evolucionando nuestro catálogo de cursos para incluir las últimas tendencias, asegurando que nuestros estudiantes se mantengan a la vanguardia de la innovación tecnológica.</p>
+                    <div class="image-box">
+                        <img src="futuro.jpg" alt="Foto conceptual del futuro de TechHub" style="width: 250px;">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="mission-vision">
+            <div class="container">
+                <h3>Nuestra Misión y Compromiso</h3>
+                <p>Nuestra misión es empoderar a la próxima generación de líderes tecnológicos, proporcionando un ecosistema de aprendizaje dinámico, práctico y accesible. Estamos comprometidos a transformar la educación, un código, un circuito y un algoritmo a la vez.</p>
+            </div>
+        </section>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="TechHub.html" class="back-link">← Volver a la Página Principal</a>
+        </div>
+    </div>
+
+</body>
+</html>

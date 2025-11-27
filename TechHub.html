@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechHub - Desarrollo Web, Ciberseguridad, IA y Hardware</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ======================================= */
+        /* == DISEÑO MODERNO (STYLING GLOBAL) == */
+        /* ======================================= */
+
+        :root {
+            --color-primary: #5A67D8; /* Índigo */
+            --color-secondary: #4299E1; /* Azul de acento */
+            --color-text-dark: #1A202C;
+            --color-bg-light: #F8FAFC;
+            --color-white: #FFFFFF;
+            --border-radius-lg: 16px;
+            --border-radius-full: 9999px;
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 15px rgba(66, 153, 225, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: #4A5568; /* Gris oscuro para texto de cuerpo */
+            background-color: var(--color-bg-light);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- Tipografía --- */
+        h1, h2, h3 {
+            color: var(--color-text-dark);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        h3 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+
+        /* --- Botón CTA (Completely Redesigned) --- */
+        .btn-primary {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: var(--color-white);
+            padding: 14px 32px;
+            border-radius: var(--border-radius-full);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(90, 103, 216, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* --- Secciones --- */
+        .section {
+            padding: 5rem 0; /* Mayor espacio en blanco */
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            color: var(--color-text-dark);
+        }
+        
+        /* ======================================= */
+        /* == HEADER Y NAV == */
+        /* ======================================= */
+
+        header {
+            background: var(--color-white);
+            color: var(--color-text-dark);
+            padding: 16px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--color-primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--color-text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--color-primary);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-primary);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* ======================================= */
+        /* == HERO SECTION (Figma/Stripe Style) == */
+        /* ======================================= */
+
+        .hero {
+            background: linear-gradient(135deg, var(--color-bg-light) 0%, var(--color-white) 100%);
+            padding: 6rem 0;
+            text-align: center;
+            /* Agregamos un patrón de fondo muy sutil para un toque tech */
+            background-image: radial-gradient(var(--color-primary) 1px, transparent 1px),
+                              radial-gradient(var(--color-secondary) 1px, var(--color-bg-light) 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            max-width: 900px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: #6B7280;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        /* ======================================= */
+        /* == ABOUT & STATS == */
+        /* ======================================= */
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-text h3 { color: var(--color-primary); }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .stat-box {
+            background: var(--color-white);
+            color: var(--color-text-dark);
+            padding: 30px;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            border: 1px solid #E5E7EB;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s;
+        }
+        
+        .stat-box:hover { transform: translateY(-3px); }
+
+        .stat-box h4 {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        
+        /* ======================================= */
+        /* == AREAS (CATEGORIES) == */
+        /* ======================================= */
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: var(--color-white);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            border: 1px solid #E5E7EB;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .category-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: block;
+            color: var(--color-primary); /* Color de ícono en la tarjeta */
+        }
+
+        .category-card h3 {
+            color: var(--color-primary);
+        }
+        
+        .category-card ul {
+            list-style: none;
+            margin-top: 1rem;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        /* ======================================= */
+        /* == CATÁLOGO (TABS & CARDS) - CORRECCIÓN CLAVE == */
+        /* ======================================= */
+
+        .tabs {
+            display: flex;
+            justify-content: start; /* Alineado a la izquierda */
+            border-bottom: 2px solid #E5E7EB;
+            margin-bottom: 3rem;
+            padding-bottom: 5px;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: #6B7280;
+            padding: 10px 0;
+            margin-right: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s, border-bottom 0.3s;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap; /* Evita que el texto del botón se rompa */
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            color: var(--color-primary);
+            border-bottom: 3px solid var(--color-primary);
+        }
+
+        /* CORRECCIÓN: OCULTAR/MOSTRAR CONTENIDO */
+        .tab-content {
+            display: none; /* Oculta todas las pestañas por defecto */
+        }
+
+        .tab-content.active {
+            display: grid; /* Muestra la pestaña activa como grid */
+        }
+        /* FIN CORRECCIÓN */
+
+        .products {
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--color-white);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #E5E7EB;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--color-white);
+            font-weight: 700;
+        }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        .product-type {
+            display: inline-block;
+            background: var(--color-primary);
+            color: var(--color-white);
+            padding: 4px 12px;
+            border-radius: var(--border-radius-full);
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .product-features li:before {
+            content: "• ";
+            color: var(--color-secondary);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        /* ======================================= */
+        /* == TESTIMONIOS (Nuevo Componente) == */
+        /* ======================================= */
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--color-white);
+            padding: 30px;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+            border-left: 5px solid var(--color-primary);
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 15px;
+            color: #4A5568;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--color-primary);
+            display: block;
+        }
+
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: #718096;
+        }
+
+
+        /* ======================================= */
+        /* == FOOTER == */
+        /* ======================================= */
+
+        footer {
+            background: var(--color-text-dark);
+            color: var(--color-bg-light);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            color: var(--color-secondary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section a {
+            color: #A0AEC0;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: var(--color-secondary);
+        }
+
+
+        /* ======================================= */
+        /* == RESPONSIVE DESIGN (Móvil) == */
+        /* ======================================= */
+
+        @media (max-width: 900px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#inicio" class="logo">
+                    <span class="logo-icon">💻</span>
+                    <h1>TechHub</h1>
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li> 
+                        <li><a href="#areas">Áreas</a></li>
+                        <li><a href="#catalogo">Catálogo</a></li>
+                        <li><a href="inscripcion.html">Inscripción</a></li> 
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="container">
+            <h2>Domina la Tecnología del Futuro</h2>
+            <p class="hero-subtitle">Tu portal educativo para dominar Desarrollo Web, Ciberseguridad, Inteligencia Artificial y Hardware. Recursos, tutorías personalizadas y contenido técnico de calidad.</p>
+            <a href="https://wa.me/+543885066167" target="_blank" class="btn-primary">📱 Empezar a Aprender Hoy</a>
+        </div>
+    </section>
+
+    <section id="nosotros" class="section">
+        <div class="container">
+            <h2 class="section-title">Sobre TechHub</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Nuestra Visión</h3>
+                    <p>TechHub nació en 2023 con la visión de democratizar el acceso a la educación tecnológica de calidad. Fundada por un equipo de ingenieros y educadores apasionados, nuestra plataforma se ha convertido en un referente para estudiantes y principiantes que buscan iniciar su carrera en el mundo tecnológico.</p>
+                    <p>Creemos que la tecnología es el motor del futuro, y cada persona merece tener las herramientas y el conocimiento necesarios para ser parte de esta revolución digital. Por eso, hemos desarrollado un ecosistema de aprendizaje que combina teoría sólida, práctica guiada y mentoría personalizada.</p>
+                    <p>Nuestro enfoque pedagógico se basa en la simplicidad sin sacrificar profundidad técnica, haciendo que conceptos complejos sean accesibles para todos.</p>
+                    <p style="margin-top: 20px;">
+                        <a href="nosotros.html" style="color: var(--color-primary); font-weight: 600; text-decoration: none;">Ver la historia detallada →</a>
+                    </p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-box">
+                        <h4>500+</h4>
+                        <p>Estudiantes Formados</p>
+                    </div>
+                    <div class="stat-box">
+                        <h4>95%</h4>
+                        <p>Tasa de Satisfacción</p>
+                    </div>
+                    <div class="stat-box">
+                        <h4>24/7</h4>
+                        <p>Acceso a Contenido</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="areas" class="section" style="background-color: var(--color-white);">
+        <div class="container">
+            <h2 class="section-title">Áreas de Especialización</h2>
+            <div class="categories">
+                <div class="category-card">
+                    <div class="category-icon">💻</div>
+                    <h3>Desarrollo Web</h3>
+                    <p>Aprende a construir sitios y aplicaciones web modernas. Desde HTML, CSS y JavaScript hasta frameworks avanzados y arquitecturas escalables.</p>
+                    <ul style="text-align: left; margin-top: 1rem;">
+                        <li>Frontend y Backend</li>
+                        <li>APIs RESTful</li>
+                        <li>Bases de datos</li>
+                        <li>Despliegue y DevOps</li>
+                    </ul>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🔒</div>
+                    <h3>Ciberseguridad</h3>
+                    <p>Domina las técnicas de protección digital. Aprende sobre hacking ético, análisis de vulnerabilidades, criptografía y defensa contra amenazas.</p>
+                    <ul style="text-align: left; margin-top: 1rem;">
+                        <li>Pentesting</li>
+                        <li>Análisis forense</li>
+                        <li>Seguridad de redes</li>
+                        <li>Ethical Hacking</li>
+                    </ul>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🤖</div>
+                    <h3>Inteligencia Artificial</h3>
+                    <p>Explora el mundo del Machine Learning y Deep Learning. Crea modelos predictivos, sistemas de recomendación y soluciones basadas en IA.</p>
+                    <ul style="text-align: left; margin-top: 1rem;">
+                        <li>Machine Learning</li>
+                        <li>Redes Neuronales</li>
+                        <li>Procesamiento de lenguaje</li>
+                        <li>Visión por computadora</li>
+                    </ul>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">⚙️</div>
+                    <h3>Hardware</h3>
+                    <p>Comprende la arquitectura de computadoras. Aprende sobre procesadores, tarjetas gráficas, almacenamiento y ensamblaje de sistemas optimizados.</p>
+                    <ul style="text-align: left; margin-top: 1rem;">
+                        <li>Arquitectura de CPU</li>
+                        <li>Componentes y periféricos</li>
+                        <li>Overclocking</li>
+                        <li>Mantenimiento</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="catalogo" class="section">
+        <div class="container">
+            <h2 class="section-title">Catálogo de Tecnologías</h2>
+            
+            <div class="tabs">
+                <button class="tab-btn" onclick="showTab('hardware')">Hardware (Interno)</button>
+                <button class="tab-btn" onclick="showTab('perifericos')">Periféricos (Externo)</button>
+                <button class="tab-btn" onclick="showTab('web')">Desarrollo Web</button>
+                <button class="tab-btn" onclick="showTab('seguridad')">Ciberseguridad</button>
+                <button class="tab-btn" onclick="showTab('ia')">Inteligencia Artificial (IA)</button>
+            </div>
+
+            <div id="hardware" class="tab-content products">
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #EF4444 0%, #B91C1C 100%);">🧠</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: #EF4444;">Procesadores</span>
+                        <h3>AMD Ryzen 9 7950X</h3>
+                        <p>Procesador de alto rendimiento con 16 núcleos y 32 hilos, ideal para gaming, creación de contenido y desarrollo profesional.</p>
+                        <ul class="product-features">
+                            <li>16 núcleos / 32 hilos</li>
+                            <li>Frecuencia hasta 5.7 GHz</li>
+                            <li>Arquitectura Zen 4</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #10B981 0%, #059669 100%);">💻</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: #10B981;">Procesadores</span>
+                        <h3>Intel Core i9-14900K</h3>
+                        <p>CPU de última generación con tecnología Performance-cores y Efficient-cores para máxima productividad multitarea.</p>
+                        <ul class="product-features">
+                            <li>24 núcleos / 32 hilos</li>
+                            <li>Hasta 6.0 GHz Turbo</li>
+                            <li>Arquitectura Raptor Lake</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);">🎮</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: #3B82F6;">GPU</span>
+                        <h3>NVIDIA RTX 4090</h3>
+                        <p>Tarjeta gráfica tope de línea con arquitectura Ada Lovelace, perfecta para gaming 4K, renderizado 3D y desarrollo de IA.</p>
+                        <ul class="product-features">
+                            <li>24GB GDDR6X</li>
+                            <li>16384 CUDA Cores</li>
+                            <li>Ray Tracing de 3ra gen</li>
+                        </ul>
+                    </div>
+                </div>
+                        <p>Tarjeta gráfica tope de línea con arquitectura Ada Lovelace, perfecta para gaming 4K, renderizado 3D y desarrollo de IA.</p>
+                        <ul class="product-features">
+                            <li>24GB GDDR6X</li>
+                            <li>16384 CUDA Cores</li>
+                            <li>Ray Tracing de 3ra gen</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #FACC15 0%, #D97706 100%); color: var(--color-text-dark);">⚙️</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: #FACC15; color: var(--color-text-dark);">Placas Madre</span>
+                        <h3>ASUS ROG Maximus Z790</h3>
+                        <p>Placa madre de alto rendimiento con chipset Z790, ideal para overclocking y soporte de última generación.</p>
+                        <ul class="product-features">
+                            <li>Chipset Z790</li>
+                            <li>Soporte DDR5</li>
+                            <li>PCIe 5.0</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #059669 0%, #064E3B 100%);">💾</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: #059669;">RAM</span>
+                        <h3>Corsair Vengeance DDR5</h3>
+                        <p>Módulos de memoria RAM de alta velocidad para mejorar la capacidad de multitarea y el rendimiento en aplicaciones intensivas.</p>
+                        <ul class="product-features">
+                            <li>Velocidad hasta 8000 MHz</li>
+                            <li>Capacidades de 32GB/64GB</li>
+                            <li>Latencia baja CL30</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #9CA3AF 0%, #4B5563 100%);">💿</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: #9CA3AF;">Almacenamiento</span>
+                        <h3>Samsung 990 PRO SSD</h3>
+                        <p>SSD NVMe de última generación con velocidades extremas para profesionales y entusiastas del rendimiento.</p>
+                        <ul class="product-features">
+                            <li>Hasta 7450 MB/s lectura</li>
+                            <li>Interfaz PCIe 4.0</li>
+                            <li>Tecnología V-NAND</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="perifericos" class="tab-content products">
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);">⌨️</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: #6366F1;">Teclado</span>
+                        <h3>Logitech G Pro X TKL</h3>
+                        <p>Teclado mecánico compacto sin teclado numérico, ideal para optimizar espacio y portabilidad, con switches intercambiables.</p>
+                        <ul class="product-features">
+                            <li>Switches táctiles/lineales</li>
+                            <li>Diseño TKL (80%)</li>
+                            <li>Retroiluminación RGB</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #F97316 0%, #EA580C 100%);">🖱️</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: #F97316;">Mouse</span>
+                        <h3>Razer Viper V2 Pro</h3>
+                        <p>Mouse inalámbrico ultraligero diseñado para esports, con sensor óptico de alta precisión y batería de larga duración.</p>
+                        <ul class="product-features">
+                            <li>Peso 58g (Ultra ligero)</li>
+                            <li>Sensor Focus Pro 30K DPI</li>
+                            <li>Conexión HyperSpeed</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #1D4ED8 0%, #1E40AF 100%);">🖥️</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: #1D4ED8;">Monitor</span>
+                        <h3>Dell UltraSharp U2723QE</h3>
+                        <p>Monitor 4K de 27 pulgadas con tecnología IPS Black, excelente precisión de color para desarrollo y diseño gráfico.</p>
+                        <ul class="product-features">
+                            <li>Resolución 4K UHD</li>
+                            <li>Panel IPS Black</li>
+                            <li>Hub USB-C (90W)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #4B5563 0%, #1F2937 100%);">🎧</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: #4B5563;">Audio</span>
+                        <h3>Sony WH-1000XM5</h3>
+                        <p>Auriculares con cancelación de ruido de primera línea, esenciales para mantener la concentración en tareas de programación complejas.</p>
+                        <ul class="product-features">
+                            <li>Cancelación de Ruido Líder</li>
+                            <li>Hasta 30h de batería</li>
+                            <li>Control por gestos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="web" class="tab-content products">
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);">⚛️</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: #3B82F6;">Frontend</span>
+                        <h3>React.js</h3>
+                        <p>La librería más popular para construir interfaces de usuario modulares e interactivas utilizando componentes.</p>
+                        <ul class="product-features">
+                            <li>Basado en Componentes</li>
+                            <li>Virtual DOM</li>
+                            <li>Ecosistema amplio</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #10B981 0%, #059669 100%);">🟢</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: #10B981;">Backend</span>
+                        <h3>Node.js</h3>
+                        <p>Entorno de ejecución de JavaScript en el lado del servidor, ideal para construir APIs rápidas y escalables.</p>
+                        <ul class="product-features">
+                            <li>Asíncrono y Event-driven</li>
+                            <li>Gran ecosistema NPM</li>
+                            <li>Desarrollo Full Stack JS</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #FACC15 0%, #D97706 100%); color: var(--color-text-dark);">💨</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: #FACC15; color: var(--color-text-dark);">Styling</span>
+                        <h3>Tailwind CSS</h3>
+                        <p>Framework CSS de primera clase basado en utilidades que acelera el desarrollo y la personalización de interfaces.</p>
+                        <ul class="product-features">
+                            <li>Clases de utilidad</li>
+                            <li>Altamente configurable</li>
+                            <li>Diseño responsivo rápido</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="seguridad" class="tab-content products">
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #000000 0%, #1F2937 100%);">🐧</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: #000000;">Pentesting OS</span>
+                        <h3>Kali Linux</h3>
+                        <p>Distribución de Linux especializada para la auditoría de seguridad y pruebas de penetración (penetration testing).</p>
+                        <ul class="product-features">
+                            <li>Más de 600 herramientas</li>
+                            <li>Metasploit integrado</li>
+                            <li>Diseñado para seguridad</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #EF4444 0%, #B91C1C 100%);">📶</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: #EF4444;">Análisis de Red</span>
+                        <h3>Wireshark</h3>
+                        <p>El analizador de protocolos de red más prominente del mundo, esencial para la resolución de problemas y la inspección de tráfico.</p>
+                        <ul class="product-features">
+                            <li>Captura de tráfico en vivo</li>
+                            <li>Inspección de protocolo</li>
+                            <li>Filtros avanzados</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);">📡</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: #6366F1;">Escaneo</span>
+                        <h3>Nmap</h3>
+                        <p>Herramienta fundamental para el descubrimiento de redes y la auditoría de seguridad. Permite mapear puertos y servicios.</p>
+                        <ul class="product-features">
+                            <li>Descubrimiento de hosts</li>
+                            <li>Escaneo de puertos</li>
+                            <li>Detección de OS</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ia" class="tab-content products">
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #5A67D8 0%, #4299E1 100%);">⚡</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: var(--color-primary);">LLM - Conversacional</span>
+                        <h3>ChatGPT (OpenAI)</h3>
+                        <p>Asistente de IA conversacional basado en GPT-4, capaz de generar texto, código, análisis y resolver problemas complejos.</p>
+                        <ul class="product-features">
+                            <li>Generación de texto natural</li>
+                            <li>Programación asistida</li>
+                            <li>Análisis de datos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #805AD5 0%, #553C9A 100%);">🟣</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: #805AD5;">LLM - Razonamiento</span>
+                        <h3>Claude 3 Opus (Anthropic)</h3>
+                        <p>Asistente de IA enfocado en conversaciones seguras, análisis profundo de documentos y razonamiento estructurado, con alto rendimiento.</p>
+                        <ul class="product-features">
+                            <li>Ventana de contexto amplia</li>
+                            <li>Análisis de documentos largos</li>
+                            <li>Razonamiento avanzado</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #4299E1 0%, #2B6CB0 100%);">🔵</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: #4299E1;">LLM - Multimodal</span>
+                        <h3>Gemini 2.5 Pro (Google)</h3>
+                        <p>Modelo multimodal de Google que procesa texto, imágenes, audio y video con integración al ecosistema Google y búsqueda web.</p>
+                        <ul class="product-features">
+                            <li>Procesamiento multimodal</li>
+                            <li>Integración Google Workspace</li>
+                            <li>Búsqueda en tiempo real</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #F6AD55 0%, #DD6B20 100%);">🎨</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: #F6AD55;">Generación de Imágenes</span>
+                        <h3>Midjourney V6</h3>
+                        <p>Generador de imágenes líder en el mercado, conocido por su calidad artística y fotográfica, ideal para conceptos visuales creativos.</p>
+                        <ul class="product-features">
+                            <li>Imágenes de alta calidad</li>
+                            <li>Estilo fotorealista</li>
+                            <li>Comandos de cámara avanzados</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #B794F4 0%, #805AD5 100%);">🖼️</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: #B794F4;">Generación de Imágenes</span>
+                        <h3>DALL-E 3 (OpenAI)</h3>
+                        <p>Generador de imágenes que prioriza la fidelidad al prompt textual. Integrado directamente en herramientas como ChatGPT y Bing.</p>
+                        <ul class="product-features">
+                            <li>Alta fidelidad textual</li>
+                            <li>Edición y variaciones</li>
+                            <li>Integración con chat</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #48BB78 0%, #38A169 100%);">💻</div>
+                    <div class="product-content">
+                        <span class="product-type" style="background: #48BB78;">Asistencia de Código</span>
+                        <h3>GitHub Copilot</h3>
+                        <p>Asistente de codificación basado en IA que sugiere líneas de código y funciones completas en tiempo real dentro del IDE (VS Code, etc.).</p>
+                        <ul class="product-features">
+                            <li>Autocompletado de código</li>
+                            <li>Generación de funciones</li>
+                            <li>Soporte a múltiples lenguajes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="testimonios" class="section" style="background-color: var(--color-white);">
+        <div class="container">
+            <h2 class="section-title">Lo que Dicen Nuestros Estudiantes</h2>
+            <div class="testimonial-grid">
+                
+                <div class="testimonial-card">
+                    <p>"El curso de Ciberseguridad me abrió las puertas a mi primer trabajo como Pentester. La metodología práctica y los mentores son de primera calidad."</p>
+                    <span class="testimonial-author">Javier M.</span>
+                    <span class="testimonial-role">Analista de Seguridad Júnior</span>
+                </div>
+
+                <div class="testimonial-card">
+                    <p>"Antes de TechHub, el desarrollo web me parecía imposible. Ahora manejo React y Node.js con soltura. ¡Totalmente recomendado!"</p>
+                    <span class="testimonial-author">Carolina P.</span>
+                    <span class="testimonial-role">Desarrolladora Full Stack</span>
+                </div>
+
+                <div class="testimonial-card">
+                    <p>"La tutoría personalizada sobre IA me ayudó a entender conceptos complejos de Machine Learning y a aplicar modelos en mis proyectos universitarios."</p>
+                    <span class="testimonial-author">Roberto S.</span>
+                    <span class="testimonial-role">Estudiante de Ingeniería</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="inscripcion-cta" class="section" style="text-align: center;">
+        <div class="container" style="background: var(--color-primary); padding: 50px; border-radius: var(--border-radius-lg); color: var(--color-white); box-shadow: 0 10px 30px rgba(90, 103, 216, 0.5);">
+            <h2 style="color: var(--color-white); font-size: 2rem; margin-bottom: 1rem;">Empieza tu Transformación Tecnológica</h2>
+            <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto 2.5rem;">Haz clic para llenar el formulario de inscripción y asegurar tu cupo en el curso. ¡Las vacantes son limitadas!</p>
+            <a href="inscripcion.html" class="btn-primary" style="background: var(--color-white); color: var(--color-primary); box-shadow: none;">📝 Inscribirme Ahora</a>
+        </div>
+    </section>
+
+    <section id="contacto" class="section" style="padding-bottom: 5rem;">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title">¿Tienes Preguntas?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 3rem;">Inicia tu camino en la tecnología hoy mismo. Coordina tu primera sesión de tutoría o contáctanos.</p>
+            <a href="https://wa.me/+543885066167" target="_blank" class="btn-primary">💬 Contactar por WhatsApp</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TechHub</h3>
+                    <p style="font-size: 0.9rem;">Tu portal educativo de tecnología avanzada.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces</h3>
+                    <ul>
+                        <li><a href="nosotros.html">Nuestra Historia</a></li> 
+                        <li><a href="#areas">Áreas Clave</a></li>
+                        <li><a href="#catalogo">Catálogo</a></li>
+                        <li><a href="inscripcion.html">Inscripción</a></li> 
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li><a href="https://wa.me/+543885066167" target="_blank">WhatsApp: +54 3885066167</a></li>
+                        <li>Email: <a href="mailto:robertonahueltorrejon@gmail.com">robertonahueltorrejon@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p style="margin-top: 2rem; border-top: 1px solid #4A5568; padding-top: 1rem; font-size: 0.9rem;">&copy; 2024 TechHub. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showTab(tabId) {
+            // Ocultar todos los contenidos de pestañas
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Desactivar todos los botones
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Mostrar el contenido de la pestaña seleccionada
+            document.getElementById(tabId).classList.add('active');
+            
+            // Activar el botón correspondiente
+            // Usamos un selector más robusto para encontrar el botón correcto
+            document.querySelector(`.tab-btn[onclick="showTab('${tabId}')"]`).classList.add('active');
+        }
+
+        // Inicializar la primera pestaña al cargar
+        document.addEventListener('DOMContentLoaded', () => {
+            // Asegurarse de que al menos una pestaña se muestre al inicio.
+            showTab('hardware'); 
+        });
+    </script>
+</body>
+</html>
